@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/04 15:26:18 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/04 18:41:23 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,7 @@ t_list	*lstnew(long arg)
 	return (list);
 }
 
-void	addback(t_list **list, t_list *new)
-{
-	t_list	*tmp;
-
-	tmp = *list;
-	if (!list)
-		return ;
-	if (!*list)
-		*list = new;
-	else
-	{
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-}
-
-void	test(char **arg)
+void	parcing(char **arg)
 {
 	t_list	*new;
 	t_list	*list;
@@ -94,6 +77,6 @@ void	test(char **arg)
 int	main(int argc, char **argv)
 {
 	argc = 0;
-	test(argv);
+	parcing(argv);
 	return (0);
 }
