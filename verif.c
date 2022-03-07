@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:31:42 by lide              #+#    #+#             */
-/*   Updated: 2022/03/04 15:25:20 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/07 18:27:13 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long	atoi2(const char *str, int i, int x)
 		j *= 10;
 		j += str[i] - '0';
 		if (j > 2147483648 || (x == 1 && j > 2147483647))
-			return (3147483648);
+			return (2147483649);
 		i++;
 	}
 	return (j * x);
@@ -73,6 +73,8 @@ int	is_double(t_list **list, t_list *new)
 		if ((long)tmp->content == (long)new->content)
 			return (1);
 		tmp = tmp->next;
+		if (tmp && tmp->status == -1)
+			return (0);
 	}
 	return (0);
 }
