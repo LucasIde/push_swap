@@ -6,17 +6,28 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:31:42 by lide              #+#    #+#             */
-/*   Updated: 2022/03/07 18:27:13 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/07 20:12:05 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	atoi2(const char *str, int i, int x)
+long	ft_atoi(const char *str)
 {
 	long	j;
+	int		i;
+	int		x;
 
+	i = 0;
+	x = 1;
 	j = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+	{
+		x = -1;
+		i++;
+	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		j *= 10;
@@ -26,23 +37,6 @@ long	atoi2(const char *str, int i, int x)
 		i++;
 	}
 	return (j * x);
-}
-
-long	ft_atoi(const char *str)
-{
-	int		i;
-	int		x;
-
-	i = 0;
-	x = 1;
-	while (str[i] == ' ')
-		i++;
-	if (str[i] == '-')
-	{
-		x = -1;
-		i++;
-	}
-	return (atoi2(str, i, x));
 }
 
 int	verif(char *arg)
