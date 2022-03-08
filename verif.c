@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:31:42 by lide              #+#    #+#             */
-/*   Updated: 2022/03/07 20:12:05 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/08 20:16:21 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,17 @@ int	is_double(t_list **list, t_list *new)
 {
 	t_list	*tmp;
 
-	if (!*list)
+	if (!*list && !list)
 		return (0);
 	tmp = *list;
 	while (tmp)
 	{
 		if ((long)tmp->content == (long)new->content)
 			return (1);
+		if (tmp->next == NULL)
+			return (0);
 		tmp = tmp->next;
-		if (tmp && tmp->status == -1)
+		if (tmp->status == -1)
 			return (0);
 	}
 	return (0);
