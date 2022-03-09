@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/08 20:14:50 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/09 21:27:41 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	print(t_list *list)
 
 	i++;
 	printf("\n|-- %d --|\n", i);
+	if (!list)
+		return ;
+
 	while (list->status != -1)
 		list = list->next;
 	while (list)
@@ -37,8 +40,11 @@ void	print(t_list *list)
 		printf("%d\n", (int)list->content);
 		printf("|status %d|\n", (int)list->status);
 		list = list->next;
-		if (list->status == -1)
-			return ;
+		if (list)
+		{
+			if (list->status == -1)
+				return ;
+		}
 	}
 }
 
