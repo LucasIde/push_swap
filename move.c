@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:30:52 by lide              #+#    #+#             */
-/*   Updated: 2022/03/09 21:26:55 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/10 16:27:14 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	reverse_rotate(t_list **list)
 void	swap(t_list **first)
 {
 	t_list	*second;
-	int tmp;
 
 	if (*first && (*first)->next != NULL)
 	{
@@ -60,9 +59,8 @@ void	swap(t_list **first)
 		}
 		(*first)->before = second;
 		second->next = *first;
-		tmp = (*first)->status;
 		(*first)->status = second->status;
-		second->status = tmp;
+		second->status = -1;
 	}
 }
 
@@ -133,22 +131,8 @@ void	push(t_list **list_send, t_list **list_r)
 void	move(t_list *list_a, t_list *list_b)
 {
 	push(&list_a, &list_b);
-	// push(&list_a, &list_b);
-	// push(&list_a, &list_b);
-	// push(&list_a, &list_b);
 	swap(&list_a);
 	rotate(&list_a);
-	swap(&list_a);
-	// rotate(&list_a);
-	// rotate(&list_a);
-	// rotate(&list_a);
-	// rotate(&list_a);
-	// rotate(&list_a);
-	rotate(&list_a);
-	rotate(&list_a);
-	print(list_a);
-	reverse_rotate(&list_a);
-	swap(&list_a);
 	reverse_rotate(&list_a);
 	print(list_a);
 	print(list_b);

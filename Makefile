@@ -6,11 +6,14 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 17:18:58 by lide              #+#    #+#              #
-#    Updated: 2022/03/02 17:40:30 by lide             ###   ########.fr        #
+#    Updated: 2022/03/10 21:42:38 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= push_swap.c
+SRCS		=	push_swap.c\
+				verif.c\
+				move.c\
+				first_sort.c
 
 NAME =		libftpush_swap.a
 CC =		gcc

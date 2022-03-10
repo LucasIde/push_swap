@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/09 21:27:41 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/10 21:34:01 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	print(t_list *list)
 	printf("\n|-- %d --|\n", i);
 	if (!list)
 		return ;
-
 	while (list->status != -1)
 		list = list->next;
 	while (list)
@@ -118,12 +117,21 @@ int	main(int argc, char **argv)
 {
 	t_list	*list_a;
 	t_list	*list_b;
+	long	*sorted;
+	int i;
 
-	argc = 0;
+	i = -1;
+	if (argc < 3)
+		return (0);
 	list_b = NULL;
 	list_a = parcing(argv);
 	if (!list_a)
 		return (0);
-	move(list_a, list_b);
+	sorted = first_sort(argv);
+	if (!sorted)
+		return (0);
+	while (argv[(++i) + 1])
+		printf("|long [%ld]|", sorted[i]);
+	// move(list_a, list_b);
 	return (0);
 }
