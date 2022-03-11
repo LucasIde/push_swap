@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:32:39 by lide              #+#    #+#             */
-/*   Updated: 2022/03/10 19:08:05 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/11 19:00:25 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ void	swap(t_list **first);
 void	reverse_rotate(t_list **list);
 void	rotate(t_list **list);
 long	*first_sort(char **argv);
+void	move(t_list *list_a, t_list *list_b, long *sorted);
 
-void	move(t_list *list_a, t_list *list_b);
-void	print(t_list *list);
+
+void	print(t_list *list_a, t_list *list_b);
 
 #endif

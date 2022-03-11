@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:30:52 by lide              #+#    #+#             */
-/*   Updated: 2022/03/10 16:27:14 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/11 19:00:41 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,76 +64,109 @@ void	swap(t_list **first)
 	}
 }
 
-void	push_add(t_list *new, t_list **list_r)
+long	long_len(long *sorted)
 {
-	if (!*list_r)
+	long	i;
+
+	i = 0;
+	while (sorted[i] < 2147483649)
+		i++;
+	return (i);
+}
+
+int	in_list(int content, long *sorted, int start, int end)
+{
+	while (start < end)
 	{
-		*list_r = new;
+		if (content == sorted[start])
+			return (1);
+		start++;
 	}
-	else if (((*list_r)->next) == NULL)
+	return (0);
+}
+
+int	check_move(t_list *list, long *sorted, int start, int end)
+{
+	int		rotate;
+	int		reverse;
+
+	rotate = 0;
+	reverse = 0;
+	while (list->status != -1)
+		list = list->next;
+	if (in_list((int)list->next->content, sorted, start, end))
+		return (1);
+	while (!in_list((int)list->content, sorted, start, end))
 	{
-		new->before = *list_r;
-		new->next = *list_r;
-		(*list_r)->before = new;
-		(*list_r)->next = new;
-		(*list_r)->status = 1;
+		list = list->next;
+		rotate++;
 	}
+	while (list->status != -1)
+		list = list->before;
+	while (!in_list((int)list->content, sorted, start, end))
+	{
+		list = list->before;
+		reverse++;
+	}
+	if (rotate < reverse)
+		return (2);
 	else
-	{
-		while ((*list_r)->status != -1)
-			(*list_r) = (*list_r)->next;
-		(*list_r)->before->next = new;
-		new->before = (*list_r)->before;
-		new->next = *list_r;
-		(*list_r)->before = new;
-		(*list_r)->status = 0;
-	}
+		return (3);
 }
 
-void	push_free(t_list **list_send)
+void	move(t_list *list_a, t_list *list_b, long *sorted)
 {
-	if ((*list_send)->next == NULL)
-	{
-		free(*list_send);
-		*list_send = NULL;
-	}
-	else if ((*list_send)->status == -1 && (*list_send)->next->status == 1)
-	{
-		(*list_send)->next->status = -1;
-		(*list_send)->next->next = NULL;
-		(*list_send)->next->before = NULL;
-		free(*list_send);
-		*list_send = (*list_send)->next;
-	}
-	else
-	{
-		(*list_send)->next->status = -1;
-		(*list_send)->next->before = (*list_send)->before;
-		(*list_send)->before->next = (*list_send)->next;
-		free(*list_send);
-		*list_send = (*list_send)->next;
-	}
-}
+	long	len;
+	long	i;
+	int		j;
+	int		mv;
 
-void	push(t_list **list_send, t_list **list_r)
-{
-	t_list	*new;
+	len = long_len(sorted);
+	len /= 2;
+	j = 0;
+	i = 0;
+	while (sorted[i] < 2147483649)
+	{
+		while (j < len)
+		{
+			if (!in_list((int)list_a->content, sorted, 0, len))
+			{
+				mv = check_move(list_a, sorted, 0, len);
+				// printf("\n|| mv  %d  mv ||\n", mv);
+			}
+			while (!in_list((int)list_a->content, sorted, 0, len))
+			{
+				if (mv == 1)
+				{
+					swap(&list_a);
+					write (1, "sa\n", 3);
+				}
+				else if (mv == 2)
+				{
+					rotate(&list_a);
+					write (1, "ra\n", 3);
+				}
+				else
+				{
+					reverse_rotate(&list_a);
+					write (1, "rra\n", 4);
+				}
+				while (list_a->status != -1)
+					list_a = list_a->next;
+			}
+			// printf("\n||%d||\n", (int)list_a->content);
+			push(&list_a, &list_b);
+			write (1, "pb\n", 3);
+			j++;
+		}
+		i++;
+	}
 
-	if (!*list_send)
-		return ;
-	while ((*list_send)->status != -1)
-		*list_send = (*list_send)->next;
-	new = lstnew((long)(*list_send)->content);
-	push_add(new, list_r);
-	push_free(list_send);
-}
 
-void	move(t_list *list_a, t_list *list_b)
-{
-	push(&list_a, &list_b);
-	swap(&list_a);
-	rotate(&list_a);
-	reverse_rotate(&list_a);
-	print(list_a);
-	print(list_b);
+	printf("\n|%ld|\n", len);
+	// push(&list_a, &list_b);
+	// swap(&list_a);
+	// rotate(&list_a);
+	// reverse_rotate(&list_a);
+	print(list_a, list_b);
 }

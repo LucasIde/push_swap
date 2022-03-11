@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:49:55 by lide              #+#    #+#             */
-/*   Updated: 2022/03/10 21:46:22 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/11 12:54:39 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int	check(long *save, int i)
 
 long	*sort(long *save, int i)
 {
-	int	verif;
-	int	j;
-	long tmp;
+	int		verif;
+	int		j;
+	long	tmp;
 
 	verif = 1;
 	while (verif)
 	{
 		verif = check(save, i);
 		j = 0;
-		while(j < 5)
+		while (j < 5)
 			j++;
 		j = -1;
 		while (verif && save[++j] < 2147483649)
