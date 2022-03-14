@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/11 19:05:04 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:01:27 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,80 +24,80 @@
 // 	return (i);
 // }
 
-void	print(t_list *list_a, t_list *list_b)
-{
-	static int	i;
-
-	i++;
-	printf("\n-|a| -- --  --%d--  -- -- |b|-\n", i);
-	while (list_a->status != -1)
-		list_a = list_a->next;
-	while (list_b->status != -1)
-		list_b = list_b->next;
-	while (list_a && list_b)
-	{
-		printf(" |%d|                     |%d|\n", (int)list_a->content, (int)list_b->content);
-		printf("-|status %d|        |status %d|-\n", (int)list_a->status, (int)list_a->status);
-		list_a = list_a->next;
-		list_b = list_b->next;
-		if (list_a)
-		{
-			if (list_a->status == -1)
-			{
-				while (list_b)
-				{
-					printf("                         |%d|\n", (int)list_b->content);
-					printf("-                  |status %d|-\n", (int)list_b->status);
-					list_b = list_b->next;
-					if (list_b)
-					{
-						if (list_b->status == -1)
-							return ;
-					}
-				}
-			}
-		}
-		if (list_b)
-		{
-			if (list_b->status == -1)
-			{
-				while (list_a)
-				{
-					printf(" |%d|\n", (int)list_a->content);
-					printf("-|status %d|-\n", (int)list_a->status);
-					list_a = list_a->next;
-					if (list_a)
-					{
-						if (list_a->status == -1)
-							return ;
-					}
-				}
-			}
-		}
-	}
-}
-// void	print(t_list *list)
+// void	print(t_list *list_a, t_list *list_b)
 // {
 // 	static int	i;
 
 // 	i++;
-// 	printf("\n |-- %d --|\n", i);
-// 	if (!list)
-// 		return ;
-// 	while (list->status != -1)
-// 		list = list->next;
-// 	while (list)
+// 	printf("\n-|a| -- --  --%d--  -- -- |b|-\n", i);
+// 	while (list_a->status != -1)
+// 		list_a = list_a->next;
+// 	while (list_b->status != -1)
+// 		list_b = list_b->next;
+// 	while (list_a && list_b)
 // 	{
-// 		printf("    |%d|\n", (int)list->content);
-// 		printf("-|status %d|-\n", (int)list->status);
-// 		list = list->next;
-// 		if (list)
+// 		printf(" |%d|                     |%d|\n", (int)list_a->content, (int)list_b->content);
+// 		printf("-|status %d|        |status %d|-\n", (int)list_a->status, (int)list_a->status);
+// 		list_a = list_a->next;
+// 		list_b = list_b->next;
+// 		if (list_a)
 // 		{
-// 			if (list->status == -1)
-// 				return ;
+// 			if (list_a->status == -1)
+// 			{
+// 				while (list_b)
+// 				{
+// 					printf("                         |%d|\n", (int)list_b->content);
+// 					printf("-                  |status %d|-\n", (int)list_b->status);
+// 					list_b = list_b->next;
+// 					if (list_b)
+// 					{
+// 						if (list_b->status == -1)
+// 							return ;
+// 					}
+// 				}
+// 			}
+// 		}
+// 		else if (list_b)
+// 		{
+// 			if (list_b->status == -1)
+// 			{
+// 				while (list_a)
+// 				{
+// 					printf(" |%d|\n", (int)list_a->content);
+// 					printf("-|status %d|-\n", (int)list_a->status);
+// 					list_a = list_a->next;
+// 					if (list_a)
+// 					{
+// 						if (list_a->status == -1)
+// 							return ;
+// 					}
+// 				}
+// 			}
 // 		}
 // 	}
 // }
+void	print(t_list *list)
+{
+	static int	i;
+
+	i++;
+	printf("\n |-- %d --|\n", i);
+	if (!list)
+		return ;
+	while (list->status != -1)
+		list = list->next;
+	while (list)
+	{
+		printf("    |%d|\n", (int)list->content);
+		printf("-|status %d|-\n", (int)list->status);
+		list = list->next;
+		if (list)
+		{
+			if (list->status == -1)
+				return ;
+		}
+	}
+}
 
 void	addback(t_list **list, t_list *new)
 {

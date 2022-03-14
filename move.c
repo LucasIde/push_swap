@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:30:52 by lide              #+#    #+#             */
-/*   Updated: 2022/03/11 19:00:41 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/14 17:47:52 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	in_list(int content, long *sorted, int start, int end)
 {
 	while (start < end)
 	{
+		// printf("|%ld|\n", sorted[start]);
 		if (content == sorted[start])
 			return (1);
 		start++;
@@ -114,59 +115,71 @@ int	check_move(t_list *list, long *sorted, int start, int end)
 		return (3);
 }
 
+void	write_mv(int mv)
+{
+	if (mv == 1)
+		write (1, "sa\n", 3);
+	else if (mv == 2)
+		write (1, "ra\n", 3);
+	else if (mv == 3)
+		write (1, "rra\n", 4);
+}
+
+void	chunk(t_list **list_a, t_list **list_b, long *sorted, t_move *mm)
+{
+	if (!in_list((int)(*list_a)->content, sorted, mm->min, mm->len))
+	{
+		mm->mv = check_move(*list_a, sorted, mm->min, mm->len);
+		// printf("\n|| mv  %d  mv ||\n", mv);
+	}
+	while (!in_list((int)(*list_a)->content, sorted, mm->min, mm->len))
+	{
+		if (mm->mv == 1)
+			swap(list_a);
+		else if (mm->mv == 2)
+			rotate(list_a);
+		else
+			reverse_rotate(list_a);
+		while ((*list_a)->status != -1)
+			*list_a = (*list_a)->next;
+		write_mv(mm->mv);
+	}
+	// printf("\n||%d||\n", (int)(*list_a)->content);
+	push(list_a, list_b);
+	write (1, "pb\n", 3);
+}
+
 void	move(t_list *list_a, t_list *list_b, long *sorted)
 {
-	long	len;
-	long	i;
-	int		j;
-	int		mv;
+	t_move	mm;
+	static int	mult;
 
-	len = long_len(sorted);
-	len /= 2;
-	j = 0;
-	i = 0;
-	while (sorted[i] < 2147483649)
+	mm.max = long_len(sorted);
+	mm.splited = mm.max / 3;
+	mm.min = 0;
+	mm.len = mm.splited;
+	while (mm.min < mm.max)
 	{
-		while (j < len)
+		if (mm.len > mm.max)
+			mm.len = mm.max;
+		mm.i = mm.min;
+		while (mm.i < mm.len)
 		{
-			if (!in_list((int)list_a->content, sorted, 0, len))
-			{
-				mv = check_move(list_a, sorted, 0, len);
-				// printf("\n|| mv  %d  mv ||\n", mv);
-			}
-			while (!in_list((int)list_a->content, sorted, 0, len))
-			{
-				if (mv == 1)
-				{
-					swap(&list_a);
-					write (1, "sa\n", 3);
-				}
-				else if (mv == 2)
-				{
-					rotate(&list_a);
-					write (1, "ra\n", 3);
-				}
-				else
-				{
-					reverse_rotate(&list_a);
-					write (1, "rra\n", 4);
-				}
-				while (list_a->status != -1)
-					list_a = list_a->next;
-			}
-			// printf("\n||%d||\n", (int)list_a->content);
-			push(&list_a, &list_b);
-			write (1, "pb\n", 3);
-			j++;
+			chunk(&list_a, &list_b, sorted, &mm);
+			mm.i++;
 		}
-		i++;
+		mult++;
+		mm.min = mm.splited * mult;
+		mm.len = mm.splited * (mult + 1);
 	}
 
-
-	printf("\n|%ld|\n", len);
+	// printf("\n|yo mmi %ld|\n", mm.min);
+	// printf("\n|yo maaax %d|\n", max);
+	// printf("\n|%ld|\n", len);
 	// push(&list_a, &list_b);
 	// swap(&list_a);
 	// rotate(&list_a);
 	// reverse_rotate(&list_a);
-	print(list_a, list_b);
+	print(list_a);
+	print(list_b);
 }
