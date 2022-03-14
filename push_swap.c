@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/14 17:01:27 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/14 19:14:40 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,21 +147,17 @@ t_list	*parcing(char **arg)
 	while (arg[++v.i])
 	{
 		v.verif1 = verif(arg[v.i]);
+		if (v.verif1)
+			return ((t_list *)write_error());
 		v.verif2 = ft_atoi(arg[v.i]);
-		if (v.verif1 || v.verif2 > 2147483648)
-		{
-			write(1, "Error\n", 6);
-			return (NULL);
-		}
+		if (v.verif2 > 2147483648)
+			return ((t_list *)write_error());
 		new = lstnew(v.verif2);
 		v.verif3 = is_double(&list, new);
 		if (v.verif3)
-			write(1, "Error\n", 6);
-		if (v.verif3)
-			return (NULL);
+			return ((t_list *)write_error());
 		addback(&list, new);
 	}
-	// print(list);
 	return (list);
 }
 
