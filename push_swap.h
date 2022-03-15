@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:32:39 by lide              #+#    #+#             */
-/*   Updated: 2022/03/14 19:33:23 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/15 16:09:37 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ long	*first_sort(char **argv);
 void	move(t_list *list_a, t_list *list_b, long *sorted);
 void	write_mv(int mv);
 void	*write_error(void);
-void	move2(t_list **list_a, t_list **list_b, long *sorted);
+void	move2(t_list **list_a, t_list **list_b, long *sorted, int diviseur);
+void	move3(t_list **list_a, t_list **list_b, long *sorted);
+long	long_len(long *sorted);
 
 void	print(t_list *list);
 

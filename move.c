@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:30:52 by lide              #+#    #+#             */
-/*   Updated: 2022/03/14 19:28:19 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/15 16:08:46 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,12 @@ void	swap(t_list **first)
 
 void	move(t_list *list_a, t_list *list_b, long *sorted)
 {
-	move2(&list_a, &list_b, sorted);
+	int diviseur;
+
+	diviseur = 3;
+	move2(&list_a, &list_b, sorted, diviseur);
+	move3(&list_a, &list_b, sorted);
+
 
 	// printf("\n|yo mmi %ld|\n", mm.min);
 	// printf("\n|yo maaax %d|\n", max);

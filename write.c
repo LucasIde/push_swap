@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:38:12 by lide              #+#    #+#             */
-/*   Updated: 2022/03/14 19:33:13 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/15 15:07:02 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	write_mv(int mv)
 		write (1, "ra\n", 3);
 	else if (mv == 3)
 		write (1, "rra\n", 4);
+	else if (mv == 4)
+		write (1, "ss\n", 3);
 }
 
 void	*write_error(void)
