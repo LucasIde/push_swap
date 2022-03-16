@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:17:48 by lide              #+#    #+#             */
-/*   Updated: 2022/03/15 15:45:15 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/16 16:10:31 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ int	check_move(t_list *list, long *sorted, int start, int end)
 
 	rotate = 0;
 	reverse = 0;
-	while (list->status != -1)
-		list = list->next;
+	list_next(&list);
 	if (in_list((int)list->next->content, sorted, start, end))
 		return (1);
 	while (!in_list((int)list->content, sorted, start, end))
@@ -49,8 +48,7 @@ int	check_move(t_list *list, long *sorted, int start, int end)
 		list = list->next;
 		rotate++;
 	}
-	while (list->status != -1)
-		list = list->before;
+	list_before(&list);
 	while (!in_list((int)list->content, sorted, start, end))
 	{
 		list = list->before;
@@ -66,8 +64,7 @@ int	check_move2(t_list *list)
 {
 	if (list && list->next != NULL)
 	{
-		while (list->status != -1)
-			list = list->next;
+		list_next(&list);
 		if (list->content < list->next->content)
 			return (4);
 	}
@@ -92,8 +89,7 @@ void	chunk(t_list **list_a, t_list **list_b, long *sorted, t_move *mm)
 			reverse_rotate(list_a);
 		if (mm->mv == 4)
 			swap(list_b);
-		while ((*list_a)->status != -1)
-			*list_a = (*list_a)->next;
+		list_next(list_a);
 		while (*list_b && (*list_b)->next != NULL && (*list_b)->status != -1)
 			*list_b = (*list_b)->next;
 		write_mv(mm->mv);

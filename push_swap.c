@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/15 15:16:15 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/16 20:26:42 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,8 @@ int	main(int argc, char **argv)
 	sorted = first_sort(argv); //regarder si write error/free
 	if (!sorted)
 		return (0);
-	while (argv[(++i) + 1])
-		printf("|long [%ld]|", sorted[i]);
+	// while (argv[(++i) + 1])
+		// printf("|long [%ld]|", sorted[i]);
 	move(list_a, list_b, sorted);
 	return (0);
 }

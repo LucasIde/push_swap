@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:30:52 by lide              #+#    #+#             */
-/*   Updated: 2022/03/15 16:08:46 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/16 20:34:52 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	rotate(t_list **list)
 {
 	if (*list && (*list)->next != NULL)
 	{
-		while ((*list)->status != -1)
-			*list = (*list)->next;
+		list_next(list);
 		(*list)->status = 1;
 		(*list)->before->status = 0;
 		(*list)->next->status = -1;
@@ -28,8 +27,7 @@ void	reverse_rotate(t_list **list)
 {
 	if (*list && (*list)->next != NULL)
 	{
-		while ((*list)->status != -1)
-			*list = (*list)->next;
+		list_next(list);
 		(*list)->status = 0;
 		(*list)->before->status = -1;
 		(*list)->before->before->status = 1;
@@ -42,8 +40,7 @@ void	swap(t_list **first)
 
 	if (*first && (*first)->next != NULL)
 	{
-		while ((*first)->status != -1)
-			*first = (*first)->next;
+		list_next(first);
 		second = (*first)->next;
 		if ((*first)->next->status != (*first)->before->status)
 		{
@@ -68,7 +65,7 @@ void	move(t_list *list_a, t_list *list_b, long *sorted)
 {
 	int diviseur;
 
-	diviseur = 3;
+	diviseur = 5;
 	move2(&list_a, &list_b, sorted, diviseur);
 	move3(&list_a, &list_b, sorted);
 
@@ -80,6 +77,6 @@ void	move(t_list *list_a, t_list *list_b, long *sorted)
 	// swap(&list_a);
 	// rotate(&list_a);
 	// reverse_rotate(&list_a);
-	print(list_a);
-	print(list_b);
+	// print(list_a);
+	// print(list_b);
 }
