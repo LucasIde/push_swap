@@ -6,7 +6,7 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 17:18:58 by lide              #+#    #+#              #
-#    Updated: 2022/03/15 16:09:15 by lide             ###   ########.fr        #
+#    Updated: 2022/03/17 20:24:48 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS		=	push_swap.c\
 				first_sort.c\
 				chunk.c\
 				sort_chunk.c\
-				write.c
+				write.c\
+				sort_tiny.c
 
 NAME =		push_swap.a
 CC =		@gcc

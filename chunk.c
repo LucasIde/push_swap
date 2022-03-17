@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:17:48 by lide              #+#    #+#             */
-/*   Updated: 2022/03/16 16:10:31 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/17 20:17:07 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,22 +89,20 @@ void	chunk(t_list **list_a, t_list **list_b, long *sorted, t_move *mm)
 			reverse_rotate(list_a);
 		if (mm->mv == 4)
 			swap(list_b);
-		list_next(list_a);
-		while (*list_b && (*list_b)->next != NULL && (*list_b)->status != -1)
-			*list_b = (*list_b)->next;
 		write_mv(mm->mv);
+		// printf("\n|%d|\n\n", (int)(*list_a)->content);
 	}
 	push(list_a, list_b);
 	write (1, "pb\n", 3);
 }
 
-void	move2(t_list **list_a, t_list **list_b, long *sorted, int diviseur)
+void	move2(t_list **list_a, t_list **list_b, long *sorted, int divider)
 {
 	t_move		mm;
 	static int	mult;
 
 	mm.max = long_len(sorted);
-	mm.splited = mm.max / diviseur;
+	mm.splited = mm.max / divider;
 	mm.min = 0;
 	mm.len = mm.splited;
 	while (mm.min < mm.max)

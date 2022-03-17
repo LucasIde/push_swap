@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/16 20:26:42 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/17 21:07:55 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,16 +161,27 @@ t_list	*parcing(char **arg)
 	return (list);
 }
 
+int	ft_divider(int argc)
+{
+	if (argc <= 10)
+		return (2);
+	if (argc > 10 && argc <= 100)
+		return (6);
+	else
+		return (12);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*list_a;
 	t_list	*list_b;
 	long	*sorted;
-	int		i;
+	int		divider;
 
-	i = -1;
-	if (argc < 3)
+	argc--;
+	if (argc < 2)
 		return (0);
+	divider = ft_divider(argc);
 	list_b = NULL;
 	list_a = parcing(argv);
 	if (!list_a)
@@ -178,8 +189,9 @@ int	main(int argc, char **argv)
 	sorted = first_sort(argv); //regarder si write error/free
 	if (!sorted)
 		return (0);
-	// while (argv[(++i) + 1])
-		// printf("|long [%ld]|", sorted[i]);
-	move(list_a, list_b, sorted);
+	if (argc < 6)
+		tiny(&list_a, &list_b, sorted, argc);
+	else
+		move(list_a, list_b, sorted, divider);
 	return (0);
 }

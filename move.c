@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:30:52 by lide              #+#    #+#             */
-/*   Updated: 2022/03/16 20:34:52 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/17 19:29:38 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	rotate(t_list **list)
 		(*list)->status = 1;
 		(*list)->before->status = 0;
 		(*list)->next->status = -1;
+		list_next(list);
 	}
 }
 
@@ -31,6 +32,7 @@ void	reverse_rotate(t_list **list)
 		(*list)->status = 0;
 		(*list)->before->status = -1;
 		(*list)->before->before->status = 1;
+		list_next(list);
 	}
 }
 
@@ -58,15 +60,15 @@ void	swap(t_list **first)
 		second->next = *first;
 		(*first)->status = second->status;
 		second->status = -1;
+		list_next(first);
 	}
 }
 
-void	move(t_list *list_a, t_list *list_b, long *sorted)
+void	move(t_list *list_a, t_list *list_b, long *sorted, int divider)
 {
-	int diviseur;
-
-	diviseur = 5;
-	move2(&list_a, &list_b, sorted, diviseur);
+	move2(&list_a, &list_b, sorted, divider);
+	// print(list_a);
+	// print(list_b);
 	move3(&list_a, &list_b, sorted);
 
 

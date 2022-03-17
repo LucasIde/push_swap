@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:52:51 by lide              #+#    #+#             */
-/*   Updated: 2022/03/16 16:13:05 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/17 15:59:06 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ void	push(t_list **list_send, t_list **list_r)
 
 	if (!*list_send)
 		return ;
-		list_next(list_send);
+	list_next(list_send);
 	new = lstnew((long)(*list_send)->content);
 	push_add(new, list_r);
 	push_free(list_send);
+	if (*list_send && (*list_send)->next != NULL)
+		list_next(list_send);
 }
