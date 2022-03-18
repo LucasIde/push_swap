@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:32:39 by lide              #+#    #+#             */
-/*   Updated: 2022/03/17 21:07:36 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/18 18:20:06 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_move
 t_list	*parcing(char **arg);
 t_list	*lstnew(long arg);
 void	addback(t_list **list, t_list *new);
-int		verif(char *arg);
+int		is_digit(char *arg);
 long	ft_atoi(const char *str);
 int		is_double(t_list **list, t_list *new);
 void	push(t_list **list_send, t_list **list_r);
@@ -56,7 +56,8 @@ void	rotate(t_list **list);
 long	*first_sort(char **argv);
 void	move(t_list *list_a, t_list *list_b, long *sorted, int divider);
 void	write_mv(int mv);
-void	*write_error(void);
+void	*write_error(t_list **list);
+int	write_error_array(t_list **list);
 void	move2(t_list **list_a, t_list **list_b, long *sorted, int diviseur);
 void	move3(t_list **list_a, t_list **list_b, long *sorted);
 long	long_len(long *sorted);
@@ -64,6 +65,7 @@ void	list_before(t_list **list);
 void	list_next(t_list **list);
 void	tiny(t_list **list_a, t_list **list_b, long *sorted, int argc);
 int	check_move(t_list *list, long *sorted, int start, int end);
+void	free_list(t_list **list);
 
 void	print(t_list *list);
 

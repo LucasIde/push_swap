@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:49:55 by lide              #+#    #+#             */
-/*   Updated: 2022/03/11 12:54:39 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/18 18:15:27 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,7 @@ long	*first_sort(char **argv)
 		return (NULL);
 	i = -1;
 	while (argv[(++i) + 1])
-	{
-		save[i] = atoi(argv[i + 1]);
-		if (save[i] > 2147483648)
-			return (NULL);
-	}
+		save[i] = ft_atoi(argv[i + 1]);
 	save[i] = 2147483649;
 	save = sort(save, i);
 	return (save);

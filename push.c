@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:52:51 by lide              #+#    #+#             */
-/*   Updated: 2022/03/17 15:59:06 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/18 19:09:03 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,30 @@ void	push_add(t_list *new, t_list **list_r)
 	}
 }
 
-void	push_free(t_list **list_send)
+void	free_list(t_list **list)
 {
-	if ((*list_send)->next == NULL)
+	if (*list && (*list)->next != NULL)
+		list_next(list);
+	if ((*list)->next == NULL)
 	{
-		free(*list_send);
-		*list_send = NULL;
+		free(*list);
+		*list = NULL;
 	}
-	else if ((*list_send)->status == -1 && (*list_send)->next->status == 1)
+	else if ((*list)->next->content == (*list)->before->content)
 	{
-		(*list_send)->next->status = -1;
-		(*list_send)->next->next = NULL;
-		(*list_send)->next->before = NULL;
-		free(*list_send);
-		*list_send = (*list_send)->next;
+		(*list)->next->status = -1;
+		(*list)->next->next = NULL;
+		(*list)->next->before = NULL;
+		free(*list);
+		*list = (*list)->next;
 	}
 	else
 	{
-		(*list_send)->next->status = -1;
-		(*list_send)->next->before = (*list_send)->before;
-		(*list_send)->before->next = (*list_send)->next;
-		free(*list_send);
-		*list_send = (*list_send)->next;
+		(*list)->next->status = -1;
+		(*list)->next->before = (*list)->before;
+		(*list)->before->next = (*list)->next;
+		free(*list);
+		*list = (*list)->next;
 	}
 }
 
@@ -71,7 +73,9 @@ void	push(t_list **list_send, t_list **list_r)
 	list_next(list_send);
 	new = lstnew((long)(*list_send)->content);
 	push_add(new, list_r);
-	push_free(list_send);
+	free_list(list_send);
 	if (*list_send && (*list_send)->next != NULL)
 		list_next(list_send);
+	if (*list_r && (*list_r)->next != NULL)
+		list_next(list_r);
 }

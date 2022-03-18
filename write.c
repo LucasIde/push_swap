@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:38:12 by lide              #+#    #+#             */
-/*   Updated: 2022/03/17 15:14:29 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/18 18:19:55 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,20 @@ void	write_mv(int mv)
 		write (1, "rrb\n", 4);
 }
 
-void	*write_error(void)
+void	*write_error(t_list **list)
 {
+	while (*list)
+		free_list(list);
 	write(1, "Error\n", 6);
 	return (NULL);
+}
+
+int	write_error_array(t_list **list)
+{
+	while (*list)
+		free_list(list);
+	write(1, "Error\n", 6);
+	return (0);
 }
 
 void	list_next(t_list **list)

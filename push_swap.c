@@ -6,76 +6,12 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/17 21:07:55 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/18 19:13:47 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// int	len(char *list)
-// {
-// 	int	i;
-
-// 	if (!list)
-// 		return (0);
-// 	i = 0;
-// 	while (list[i])
-// 		i++;
-// 	return (i);
-// }
-
-// void	print(t_list *list_a, t_list *list_b)
-// {
-// 	static int	i;
-
-// 	i++;
-// 	printf("\n-|a| -- --  --%d--  -- -- |b|-\n", i);
-// 	while (list_a->status != -1)
-// 		list_a = list_a->next;
-// 	while (list_b->status != -1)
-// 		list_b = list_b->next;
-// 	while (list_a && list_b)
-// 	{
-// 		printf(" |%d|                     |%d|\n", (int)list_a->content, (int)list_b->content);
-// 		printf("-|status %d|        |status %d|-\n", (int)list_a->status, (int)list_a->status);
-// 		list_a = list_a->next;
-// 		list_b = list_b->next;
-// 		if (list_a)
-// 		{
-// 			if (list_a->status == -1)
-// 			{
-// 				while (list_b)
-// 				{
-// 					printf("                         |%d|\n", (int)list_b->content);
-// 					printf("-                  |status %d|-\n", (int)list_b->status);
-// 					list_b = list_b->next;
-// 					if (list_b)
-// 					{
-// 						if (list_b->status == -1)
-// 							return ;
-// 					}
-// 				}
-// 			}
-// 		}
-// 		else if (list_b)
-// 		{
-// 			if (list_b->status == -1)
-// 			{
-// 				while (list_a)
-// 				{
-// 					printf(" |%d|\n", (int)list_a->content);
-// 					printf("-|status %d|-\n", (int)list_a->status);
-// 					list_a = list_a->next;
-// 					if (list_a)
-// 					{
-// 						if (list_a->status == -1)
-// 							return ;
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// }
 void	print(t_list *list)
 {
 	static int	i;
@@ -146,16 +82,18 @@ t_list	*parcing(char **arg)
 	list = NULL;
 	while (arg[++v.i])
 	{
-		v.verif1 = verif(arg[v.i]);
+		v.verif1 = is_digit(arg[v.i]);
 		if (v.verif1)
-			return ((t_list *)write_error());
+			return ((t_list *)write_error(&list));
 		v.verif2 = ft_atoi(arg[v.i]);
 		if (v.verif2 > 2147483648)
-			return ((t_list *)write_error());
+			return ((t_list *)write_error(&list));
 		new = lstnew(v.verif2);
+		if (!new)
+			return ((t_list *)write_error(&list));
 		v.verif3 = is_double(&list, new);
 		if (v.verif3)
-			return ((t_list *)write_error());
+			return ((t_list *)write_error(&list));
 		addback(&list, new);
 	}
 	return (list);
@@ -169,6 +107,27 @@ int	ft_divider(int argc)
 		return (6);
 	else
 		return (12);
+}
+
+int	check_sorted(t_list **list_a)
+{
+	int	check;
+
+	check = 0;
+	while (list_a && check == 0)
+	{
+		if ((*list_a)->content > (*list_a)->next->content)
+			check = 1;
+		*list_a = (*list_a)->next;
+		if ((*list_a)->status == -1)
+		{
+			while(*list_a)
+				free_list(list_a);
+			return (0);
+		}
+	}
+	list_before(list_a);
+	return (check);
 }
 
 int	main(int argc, char **argv)
@@ -186,12 +145,17 @@ int	main(int argc, char **argv)
 	list_a = parcing(argv);
 	if (!list_a)
 		return (0);
-	sorted = first_sort(argv); //regarder si write error/free
-	if (!sorted)
+	if (!check_sorted(&list_a))
 		return (0);
+	sorted = first_sort(argv);
+	if (!sorted)
+		return (write_error_array(&list_a));
 	if (argc < 6)
 		tiny(&list_a, &list_b, sorted, argc);
 	else
 		move(list_a, list_b, sorted, divider);
+	while(list_a)
+		free_list(&list_a);
+	free(sorted);
 	return (0);
 }

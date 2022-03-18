@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:31:42 by lide              #+#    #+#             */
-/*   Updated: 2022/03/08 20:16:21 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/18 17:48:06 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ long	ft_atoi(const char *str)
 	return (j * x);
 }
 
-int	verif(char *arg)
+int	is_digit(char *arg)
 {
 	int	i;
 
