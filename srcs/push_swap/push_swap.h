@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:32:39 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 01:03:32 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 18:16:04 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+//
 # include <stdio.h>
+//
 
 typedef struct s_list
 {
@@ -48,24 +51,24 @@ t_list	*lstnew(long arg);
 void	addback(t_list **list, t_list *new);
 int		is_digit(char *arg);
 long	ft_atoi(const char *str);
-int		is_double(t_list **list, t_list *new);
+int		is_double(t_list *list, t_list *new);
 void	push(t_list **list_send, t_list **list_r);
 void	swap(t_list **first);
 void	reverse_rotate(t_list **list);
 void	rotate(t_list **list);
 long	*first_sort(char **argv);
-void	move(t_list *list_a, t_list *list_b, long *sorted, int divider);
 void	write_mv(int mv);
 void	*write_error(t_list **list);
-int	write_error_array(t_list **list);
-void	move2(t_list **list_a, t_list **list_b, long *sorted, int diviseur);
-void	move3(t_list **list_a, t_list **list_b, long *sorted);
+int		write_error_array(t_list **list);
+void	create_chunk(t_list **list_a, t_list **list_b, long *sorted, int div);
+void	sort_chunk(t_list **list_a, t_list **list_b, long *sorted);
 long	long_len(long *sorted);
 void	list_before(t_list **list);
 void	list_next(t_list **list);
 void	tiny(t_list **list_a, t_list **list_b, long *sorted, int argc);
 int		check_move(t_list *list, long *sorted, int start, int end);
 void	free_list(t_list **list);
+int		check_sorted(t_list **list_a);
 
 
 void	print(t_list *list);

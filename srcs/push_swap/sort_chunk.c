@@ -6,15 +6,12 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:52:02 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 02:25:40 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 16:12:10 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-		// printf("|sorted  %ld |\n", sorted[len]);
-		// printf("|content  %d |\n", (int)list_b->content);
-		// printf("\n|yo|\n");
 int	find_max(t_list *list_b, long *sorted, long len, int swap)
 {
 	long	rotate;
@@ -44,8 +41,6 @@ int	find_max(t_list *list_b, long *sorted, long len, int swap)
 		return (7);
 }
 
-	// while ((*list_b)->status != -1)
-	// 	*list_b =(*list_b)->next;
 int	check_swap(t_list *list_b, long *sorted, long len, int mv)
 {
 	int	rotate;
@@ -79,9 +74,7 @@ void	move_rotate(t_list **list_b, long *sorted, int len, int mv)
 	write_mv(mv);
 }
 
-		// printf("\n|mmmoooovvveee %d|\n", mv);
-		// printf("|contentttttt %d|\n", (int)(*list_b)->content);
-void	move3(t_list **list_a, t_list **list_b, long *sorted)
+void	sort_chunk(t_list **list_a, t_list **list_b, long *sorted)
 {
 	long	len;
 	int		mv;

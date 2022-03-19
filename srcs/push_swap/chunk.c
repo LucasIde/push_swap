@@ -6,21 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:17:48 by lide              #+#    #+#             */
-/*   Updated: 2022/03/17 20:17:07 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 16:04:18 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-long	long_len(long *sorted)
-{
-	long	i;
-
-	i = 0;
-	while (sorted[i] < 2147483649)
-		i++;
-	return (i);
-}
 
 int	in_list(int content, long *sorted, int start, int end)
 {
@@ -90,19 +80,18 @@ void	chunk(t_list **list_a, t_list **list_b, long *sorted, t_move *mm)
 		if (mm->mv == 4)
 			swap(list_b);
 		write_mv(mm->mv);
-		// printf("\n|%d|\n\n", (int)(*list_a)->content);
 	}
 	push(list_a, list_b);
 	write (1, "pb\n", 3);
 }
 
-void	move2(t_list **list_a, t_list **list_b, long *sorted, int divider)
+void	create_chunk(t_list **list_a, t_list **list_b, long *sorted, int div)
 {
 	t_move		mm;
 	static int	mult;
 
 	mm.max = long_len(sorted);
-	mm.splited = mm.max / divider;
+	mm.splited = mm.max / div;
 	mm.min = 0;
 	mm.len = mm.splited;
 	while (mm.min < mm.max)
@@ -119,4 +108,5 @@ void	move2(t_list **list_a, t_list **list_b, long *sorted, int divider)
 		mm.min = mm.splited * mult;
 		mm.len = mm.splited * (mult + 1);
 	}
+	sort_chunk(list_a, list_b, sorted);
 }

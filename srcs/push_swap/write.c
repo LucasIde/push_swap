@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:38:12 by lide              #+#    #+#             */
-/*   Updated: 2022/03/18 18:19:55 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 15:56:29 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,4 @@ int	write_error_array(t_list **list)
 		free_list(list);
 	write(1, "Error\n", 6);
 	return (0);
-}
-
-void	list_next(t_list **list)
-{
-	while ((*list)->status != -1)
-		*list = (*list)->next;
-}
-
-void	list_before(t_list **list)
-{
-	while ((*list)->status != -1)
-		*list = (*list)->before;
 }

@@ -6,11 +6,23 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:30:52 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 01:43:55 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 15:56:27 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	list_next(t_list **list)
+{
+	while ((*list)->status != -1)
+		*list = (*list)->next;
+}
+
+void	list_before(t_list **list)
+{
+	while ((*list)->status != -1)
+		*list = (*list)->before;
+}
 
 void	rotate(t_list **list)
 {
@@ -62,23 +74,4 @@ void	swap(t_list **first)
 		second->status = -1;
 		list_next(first);
 	}
-}
-
-void	move(t_list *list_a, t_list *list_b, long *sorted, int divider)
-{
-	move2(&list_a, &list_b, sorted, divider);//tester si je peux & dans move 2 au lieu de lui envoyer ** ici
-	// print(list_a);
-	// print(list_b);
-	move3(&list_a, &list_b, sorted);
-
-
-	// printf("\n|yo mmi %ld|\n", mm.min);
-	// printf("\n|yo maaax %d|\n", max);
-	// printf("\n|%ld|\n", len);
-	// push(&list_a, &list_b);
-	// swap(&list_a);
-	// rotate(&list_a);
-	// reverse_rotate(&list_a);
-	// print(list_a);
-	// print(list_b);
 }

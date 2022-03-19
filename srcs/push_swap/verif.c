@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:31:42 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 01:29:39 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 16:15:16 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int	is_digit(char *arg)
 	return (0);
 }
 
-int	is_double(t_list **list, t_list *new)
+int	is_double(t_list *list, t_list *new)
 {
 	t_list	*tmp;
 
-	if (!*list)
+	if (!list)
 		return (0);
-	tmp = *list;
+	tmp = list;
 	while (tmp)
 	{
 		if ((long)tmp->content == (long)new->content)
@@ -73,4 +73,25 @@ int	is_double(t_list **list, t_list *new)
 			return (0);
 	}
 	return (0);
+}
+
+int	check_sorted(t_list **list_a)
+{
+	int	check;
+
+	check = 0;
+	while (list_a && check == 0)
+	{
+		if ((*list_a)->content > (*list_a)->next->content)
+			check = 1;
+		*list_a = (*list_a)->next;
+		if ((*list_a)->status == -1)
+		{
+			while (*list_a)
+				free_list(list_a);
+			return (0);
+		}
+	}
+	list_before(list_a);
+	return (check);
 }

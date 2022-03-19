@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 01:31:37 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 16:15:23 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ t_list	*parcing(char **arg)
 		new = lstnew(v.verif2);
 		if (!new)
 			return ((t_list *)write_error(&list));
-		v.verif3 = is_double(&list, new);//tester de retirer le &
+		v.verif3 = is_double(list, new);
+		if (v.verif3)
+			free(new);
 		if (v.verif3)
 			return ((t_list *)write_error(&list));
 		addback(&list, new);
@@ -109,51 +111,30 @@ int	ft_divider(int argc)
 		return (12);
 }
 
-int	check_sorted(t_list **list_a)
-{
-	int	check;
-
-	check = 0;
-	while (list_a && check == 0)
-	{
-		if ((*list_a)->content > (*list_a)->next->content)
-			check = 1;
-		*list_a = (*list_a)->next;
-		if ((*list_a)->status == -1)
-		{
-			while (*list_a)
-				free_list(list_a);
-			return (0);
-		}
-	}
-	list_before(list_a);
-	return (check);
-}
-
 int	main(int argc, char **argv)
 {
 	t_list	*list_a;
 	t_list	*list_b;
 	long	*sorted;
-	int		divider;
+	int		div;
 
 	if (argc < 3)
 		return (0);
-	divider = ft_divider(argc);
+	div = ft_divider(argc);
 	list_b = NULL;
-	list_a = parcing(argv);//free1
+	list_a = parcing(argv);
 	if (!list_a)
 		return (0);
-	if (!check_sorted(&list_a))//free2
+	if (!check_sorted(&list_a))
 		return (0);
 	sorted = first_sort(argv);
 	if (!sorted)
-		return (write_error_array(&list_a));//free 3
+		return (write_error_array(&list_a));
 	if (argc < 7)
 		tiny(&list_a, &list_b, sorted, argc);
 	else
-		move(list_a, list_b, sorted, divider);
-	while(list_a)
+		create_chunk(&list_a, &list_b, sorted, div);
+	while (list_a)
 		free_list(&list_a);
 	free(sorted);
 	return (0);
