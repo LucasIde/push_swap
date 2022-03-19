@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/18 19:13:47 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 01:31:37 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_list	*parcing(char **arg)
 		new = lstnew(v.verif2);
 		if (!new)
 			return ((t_list *)write_error(&list));
-		v.verif3 = is_double(&list, new);
+		v.verif3 = is_double(&list, new);//tester de retirer le &
 		if (v.verif3)
 			return ((t_list *)write_error(&list));
 		addback(&list, new);
@@ -101,9 +101,9 @@ t_list	*parcing(char **arg)
 
 int	ft_divider(int argc)
 {
-	if (argc <= 10)
+	if (argc <= 11)
 		return (2);
-	if (argc > 10 && argc <= 100)
+	if (argc > 11 && argc <= 101)
 		return (6);
 	else
 		return (12);
@@ -121,7 +121,7 @@ int	check_sorted(t_list **list_a)
 		*list_a = (*list_a)->next;
 		if ((*list_a)->status == -1)
 		{
-			while(*list_a)
+			while (*list_a)
 				free_list(list_a);
 			return (0);
 		}
@@ -137,20 +137,19 @@ int	main(int argc, char **argv)
 	long	*sorted;
 	int		divider;
 
-	argc--;
-	if (argc < 2)
+	if (argc < 3)
 		return (0);
 	divider = ft_divider(argc);
 	list_b = NULL;
-	list_a = parcing(argv);
+	list_a = parcing(argv);//free1
 	if (!list_a)
 		return (0);
-	if (!check_sorted(&list_a))
+	if (!check_sorted(&list_a))//free2
 		return (0);
 	sorted = first_sort(argv);
 	if (!sorted)
-		return (write_error_array(&list_a));
-	if (argc < 6)
+		return (write_error_array(&list_a));//free 3
+	if (argc < 7)
 		tiny(&list_a, &list_b, sorted, argc);
 	else
 		move(list_a, list_b, sorted, divider);

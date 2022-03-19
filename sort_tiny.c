@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:44:58 by lide              #+#    #+#             */
-/*   Updated: 2022/03/18 17:21:07 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 01:02:29 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,12 @@ void	five(t_list **list_a, t_list **list_b, long *sorted)
 
 void	tiny(t_list **list_a, t_list **list_b, long *sorted, int argc)
 {
-	if (argc == 2)
+	if (argc == 3)
 		two(list_a);
-	else if (argc == 3)
-		three(list_a, sorted, 0);
 	else if (argc == 4)
-		four(list_a, list_b, sorted, 0);
+		three(list_a, sorted, 0);
 	else if (argc == 5)
+		four(list_a, list_b, sorted, 0);
+	else if (argc == 6)
 		five(list_a, list_b, sorted);
 }

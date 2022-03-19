@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:32:39 by lide              #+#    #+#             */
-/*   Updated: 2022/03/18 18:20:06 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/19 01:03:32 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ long	long_len(long *sorted);
 void	list_before(t_list **list);
 void	list_next(t_list **list);
 void	tiny(t_list **list_a, t_list **list_b, long *sorted, int argc);
-int	check_move(t_list *list, long *sorted, int start, int end);
+int		check_move(t_list *list, long *sorted, int start, int end);
 void	free_list(t_list **list);
+
 
 void	print(t_list *list);
 
