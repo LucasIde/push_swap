@@ -6,23 +6,26 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 17:18:58 by lide              #+#    #+#              #
-#    Updated: 2022/03/19 18:28:48 by lide             ###   ########.fr        #
+#    Updated: 2022/03/21 18:38:08 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	srcs/push_swap/push_swap.c\
-				srcs/push_swap/verif.c\
-				srcs/push_swap/move.c\
-				srcs/push_swap/push.c\
-				srcs/push_swap/first_sort.c\
-				srcs/push_swap/chunk.c\
-				srcs/push_swap/sort_chunk.c\
-				srcs/push_swap/write.c\
-				srcs/push_swap/sort_tiny.c
+SRCS		=	push_swap_file/push_swap.c\
+				push_swap_file/verif.c\
+				push_swap_file/move.c\
+				push_swap_file/push.c\
+				push_swap_file/first_sort.c\
+				push_swap_file/chunk.c\
+				push_swap_file/sort_chunk.c\
+				push_swap_file/write.c\
+				push_swap_file/sort_tiny.c
 
-SRCS_BONUS	=	gnl/get_next_line.c\
-				gnl/get_next_line_utils.c\
-				srcs/checker/test.c
+SRCS_BONUS	=	checker_file/get_next_line_bonus.c\
+				checker_file/get_next_line_utils_bonus.c\
+				checker_file/checker_bonus.c\
+				checker_file/verif_bonus.c\
+				checker_file/move_bonus.c\
+				checker_file/push_bonus.c
 
 NAME1		= push_swap.a
 NAME2		= checker.a
@@ -39,7 +42,7 @@ ${NAME1}:	${OBJS}
 			@echo "Push_swap Created"
 
 ${NAME2}:	${OBJS_BONUS}
-			@ar -rc ${NAME2} ${OBJS}
+			@ar -rc ${NAME2} ${OBJS_BONUS}
 			@${CC} ${CFLAGS} ${NAME2} -o ${EXEC2}
 			@echo "checker Created"
 
