@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:21:15 by lide              #+#    #+#             */
-/*   Updated: 2022/03/21 19:50:04 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/22 19:52:37 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,44 +41,6 @@ t_list	*parcing(char **arg)
 	return (list);
 }
 
-void	move_r(t_list **list_a, t_list **list_b, char *str, int i)//rrr
-{
-	if (str[i + 1] == 'a')
-		rotate(list_a);
-	else if (str[i + 1] == 'b')
-		rotate(list_b);
-	else if (str[i + 1] == 'r')
-	{
-		if (str[i + 2] == 'a')
-			reverse_rotate(list_a);
-		else if (str[i + 2] == 'b')
-			reverse_rotate(list_b);
-	}
-}
-
-void	move(t_list **list_a, t_list **list_b, char *str)//ss
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == 's')
-	{
-		if (str[i + 1] == 'a')
-			swap(list_a);
-		else if (str[i + 1] == 'b')
-			swap(list_b);
-	}
-	else if (str[i] == 'r')
-		move_r(list_a, list_b, str, i);
-	else if (str[i] == 'p')
-	{
-		if (str[i + 1] == 'a')
-			push(list_b, list_a);
-		else if (str[i + 1] == 'b')
-			push(list_a, list_b);
-	}
-}
-
 void	check_sorted(t_list **list_a, t_list *list_b)
 {
 	int	check;
@@ -93,7 +55,7 @@ void	check_sorted(t_list **list_a, t_list *list_b)
 		return ;
 	while (*list_a && check == 0)
 	{
-		if ((*list_a)->content > (*list_a)->next->content)
+		if ((int)(*list_a)->content > (int)(*list_a)->next->content)
 			check = 1;
 		*list_a = (*list_a)->next;
 		if ((*list_a)->status == -1)
@@ -106,11 +68,20 @@ void	check_sorted(t_list **list_a, t_list *list_b)
 	write(1, "KO\n", 3);
 }
 
+void	double_free(t_list **list_a, t_list **list_b)
+{
+	while (*list_a)
+		free_list(list_a);
+	while (*list_b)
+		free_list(list_b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*list_a;
 	t_list	*list_b;
 	char	*str;
+	int		verif;
 
 	if (argc < 2)
 		return (0);
@@ -121,14 +92,13 @@ int	main(int argc, char **argv)
 	str = get_next_line(0);
 	while (str)
 	{
-		move(&list_a, &list_b, str);//si aucune instruction good erreur
+		verif = move(&list_a, &list_b, str);
+		if (verif)
+			return (write_error_str(&list_a, &list_b, str));
 		free(str);
 		str = get_next_line(0);
 	}
 	check_sorted(&list_a, list_b);
-	while (list_a)
-		free_list(&list_a);
-	while (list_b)
-		free_list(&list_b);
+	double_free(&list_a, &list_b);
 	return (0);
 }

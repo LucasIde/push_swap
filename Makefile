@@ -6,7 +6,7 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 17:18:58 by lide              #+#    #+#              #
-#    Updated: 2022/03/21 18:38:08 by lide             ###   ########.fr        #
+#    Updated: 2022/03/22 20:44:19 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS_BONUS	=	checker_file/get_next_line_bonus.c\
 				checker_file/checker_bonus.c\
 				checker_file/verif_bonus.c\
 				checker_file/move_bonus.c\
+				checker_file/check_move_bonus.c\
 				checker_file/push_bonus.c
 
 NAME1		= push_swap.a

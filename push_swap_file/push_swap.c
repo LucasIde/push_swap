@@ -6,34 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 16:15:23 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/22 19:21:54 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print(t_list *list)
-{
-	static int	i;
-
-	i++;
-	printf("\n |-- %d --|\n", i);
-	if (!list)
-		return ;
-	while (list->status != -1)
-		list = list->next;
-	while (list)
-	{
-		printf("    |%d|\n", (int)list->content);
-		printf("-|status %d|-\n", (int)list->status);
-		list = list->next;
-		if (list)
-		{
-			if (list->status == -1)
-				return ;
-		}
-	}
-}
 
 void	addback(t_list **list, t_list *new)
 {

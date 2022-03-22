@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:32:39 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 18:16:04 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/22 17:35:19 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-
-//
-# include <stdio.h>
-//
 
 typedef struct s_list
 {
@@ -69,8 +65,5 @@ void	tiny(t_list **list_a, t_list **list_b, long *sorted, int argc);
 int		check_move(t_list *list, long *sorted, int start, int end);
 void	free_list(t_list **list);
 int		check_sorted(t_list **list_a);
-
-
-void	print(t_list *list);
 
 #endif

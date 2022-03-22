@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:52:51 by lide              #+#    #+#             */
-/*   Updated: 2022/03/18 19:09:03 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/22 19:12:42 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	free_list(t_list **list)
 		free(*list);
 		*list = NULL;
 	}
-	else if ((*list)->next->content == (*list)->before->content)
+	else if ((int)(*list)->next->content == (int)(*list)->before->content)
 	{
 		(*list)->next->status = -1;
 		(*list)->next->next = NULL;
@@ -71,7 +71,7 @@ void	push(t_list **list_send, t_list **list_r)
 	if (!*list_send)
 		return ;
 	list_next(list_send);
-	new = lstnew((long)(*list_send)->content);
+	new = lstnew((int)(*list_send)->content);
 	push_add(new, list_r);
 	free_list(list_send);
 	if (*list_send && (*list_send)->next != NULL)

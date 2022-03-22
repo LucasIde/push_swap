@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:44:58 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 01:02:29 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/22 19:08:05 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	two(t_list **list_a)
 {
-	if ((*list_a)->content > (*list_a)->next->content)
+	if ((int)(*list_a)->content > (int)(*list_a)->next->content)
 	{
 		swap(list_a);
 		write(1, "sa\n", 3);
@@ -33,7 +33,7 @@ void	three(t_list **list_a, long *sorted, int len)
 		reverse_rotate(list_a);
 		write(1, "rra\n", 4);
 	}
-	if ((*list_a)->content > (*list_a)->next->content)
+	if ((int)(*list_a)->content > (int)(*list_a)->next->content)
 	{
 		swap(list_a);
 		write(1, "sa\n", 3);
@@ -87,7 +87,7 @@ void	five(t_list **list_a, t_list **list_b, long *sorted)
 	four(list_a, list_b, sorted, 1);
 	push(list_b, list_a);
 	write(1, "pa\n", 3);
-	if ((*list_a)->content > (*list_a)->next->content)
+	if ((int)(*list_a)->content > (int)(*list_a)->next->content)
 	{
 		swap(list_a);
 		write(1, "sa\n", 3);

@@ -6,72 +6,62 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:49:53 by lide              #+#    #+#             */
-/*   Updated: 2022/03/21 21:05:38 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/22 17:03:30 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-int	tr(char *str)
+int	check_move(char *str)
 {
 	int	i;
 	int	mv;
 
-	i = 0;
+	i = -1;
 	mv = 0;
-	while (str[i])
+	while (str[++i] && mv >= 0)
 	{
-		if (str[i] == 's')
+		if (str[i] == 's' && (i == 0 || (i == 1 && mv == 10)))
 			mv += 10;
-		else if (str[i] == 'r')
+		else if (str[i] == 'r' && (i == 0 || (i == 1 && mv == 100)
+				|| (i == 2 && mv == 200)))
 			mv += 100;
-		else if (str[i] == 'p')
+		else if (str[i] == 'p' && i == 0)
 			mv += 1000;
-		else if (str[i] == 'b')
+		else if (str[i] == 'a' && i != 0 && (mv % 10 == 0))
 			mv += 1;
-		else if (str[i] == 'a')
+		else if (str[i] == 'b' && (mv % 10 == 0))
 			mv += 2;
-		else if (str[i] == '\n')
+		else if (str[i] == '\n' && !str[i + 1])
 			mv += 3;
+		else
+			mv = -1;
 	}
+	return (mv);
 }
 
-void	check_move(t_list **list_a, t_list **list_b, char *str)
+int	move(t_list **list_a, t_list **list_b, char *str)
 {
+	int	mv;
 
-}
-
-void	move(t_list **list_a, t_list **list_b, char *str)//ss rr rrr
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == 's')
-	{
-		if (str[i + 1] == 'a')
-			swap(list_a);
-		else if (str[i + 1] == 'b')
-			swap(list_b);
-	}
-	else if (str[i] == 'r')
-	{
-		if (str[i + 1] == 'a')
-			rotate(list_a);
-		else if (str[i + 1] == 'b')
-			rotate(list_b);
-		else if (str[i + 1] == 'r')
-		{
-			if (str[i + 2] == 'a')
-				reverse_rotate(list_a);
-			else if (str[i + 2] == 'b')
-				reverse_rotate(list_b);
-		}
-	}
-	else if (str[i] == 'p')
-	{
-		if (str[i + 1] == 'a')
-			push(list_b, list_a);
-		else if (str[i + 1] == 'b')
-			push(list_a, list_b);
-	}
+	mv = check_move(str);
+	if (mv == -1)
+		return (1);
+	if (mv == 14 || mv == 23)
+		swap(list_a);
+	if (mv == 15 || mv == 23)
+		swap(list_b);
+	if (mv == 104 || mv == 203)
+		rotate(list_a);
+	if (mv == 105 || mv == 203)
+		rotate(list_b);
+	if (mv == 204 || mv == 303)
+		reverse_rotate(list_a);
+	if (mv == 205 || mv == 303)
+		reverse_rotate(list_b);
+	else if (mv == 1004)
+		push(list_b, list_a);
+	else if (mv == 1005)
+		push(list_a, list_b);
+	return (0);
 }

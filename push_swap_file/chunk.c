@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:17:48 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 16:04:18 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/22 19:09:02 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_move2(t_list *list)
 	if (list && list->next != NULL)
 	{
 		list_next(&list);
-		if (list->content < list->next->content)
+		if ((int)list->content < (int)list->next->content)
 			return (4);
 	}
 	return (1);

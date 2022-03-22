@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:15:07 by lide              #+#    #+#             */
-/*   Updated: 2022/03/21 18:31:23 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/22 19:50:52 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	reverse_rotate(t_list **list);
 void	swap(t_list **first);
 void	push(t_list **list_send, t_list **list_r);
 void	free_list(t_list **list);
+int		move(t_list **list_a, t_list **list_b, char *str);
 void	*write_error(t_list **list);
+int		write_error_str(t_list **list_a, t_list **list_b, char *str);
 
 int		backspace(char *s);
 int		ft_find(char *s);
