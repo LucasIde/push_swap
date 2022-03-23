@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:17:48 by lide              #+#    #+#             */
-/*   Updated: 2022/03/22 19:09:02 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/23 17:02:56 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,25 @@ int	check_move2(t_list *list)
 	return (1);
 }
 
-void	chunk(t_list **list_a, t_list **list_b, long *sorted, t_move *mm)
+void	chunk(t_list **list_a, t_list **list_b, long *sorted, t_move *m)
 {
-	if (!in_list((int)(*list_a)->content, sorted, mm->min, mm->len))
+	if (!in_list((int)(*list_a)->content, sorted, m->min, m->len))
 	{
-		mm->mv = check_move(*list_a, sorted, mm->min, mm->len);
-		if (mm->mv == 1)
-			mm->mv = check_move2(*list_b);
+		m->mv = check_move(*list_a, sorted, m->min, m->len);
+		if (m->mv == 1)
+			m->mv = check_move2(*list_b);
 	}
-	while (!in_list((int)(*list_a)->content, sorted, mm->min, mm->len))
+	while (!in_list((int)(*list_a)->content, sorted, m->min, m->len))
 	{
-		if (mm->mv == 1 || mm->mv == 4)
+		if (m->mv == 1 || m->mv == 4)
 			swap(list_a);
-		else if (mm->mv == 2)
+		else if (m->mv == 2)
 			rotate(list_a);
-		else if (mm->mv == 3)
+		else if (m->mv == 3)
 			reverse_rotate(list_a);
-		if (mm->mv == 4)
+		if (m->mv == 4)
 			swap(list_b);
-		write_mv(mm->mv);
+		write_mv(m->mv);
 	}
 	push(list_a, list_b);
 	write (1, "pb\n", 3);
@@ -87,26 +87,26 @@ void	chunk(t_list **list_a, t_list **list_b, long *sorted, t_move *mm)
 
 void	create_chunk(t_list **list_a, t_list **list_b, long *sorted, int div)
 {
-	t_move		mm;
+	t_move		m;
 	static int	mult;
 
-	mm.max = long_len(sorted);
-	mm.splited = mm.max / div;
-	mm.min = 0;
-	mm.len = mm.splited;
-	while (mm.min < mm.max)
+	m.max = long_len(sorted);
+	m.splited = m.max / div;
+	m.min = 0;
+	m.len = m.splited;
+	while (m.min < m.max)
 	{
-		if (mm.len > mm.max)
-			mm.len = mm.max;
-		mm.i = mm.min;
-		while (mm.i < mm.len)
+		if (m.len > m.max)
+			m.len = m.max;
+		m.i = m.min;
+		while (m.i < m.len)
 		{
-			chunk(list_a, list_b, sorted, &mm);
-			mm.i++;
+			chunk(list_a, list_b, sorted, &m);
+			m.i++;
 		}
 		mult++;
-		mm.min = mm.splited * mult;
-		mm.len = mm.splited * (mult + 1);
+		m.min = m.splited * mult;
+		m.len = m.splited * (mult + 1);
 	}
 	sort_chunk(list_a, list_b, sorted);
 }

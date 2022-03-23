@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:21:15 by lide              #+#    #+#             */
-/*   Updated: 2022/03/22 19:52:37 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/23 18:16:14 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	check_sorted(t_list **list_a, t_list *list_b)
 		write(1, "KO\n", 3);
 		return ;
 	}
+	if ((*list_a)->next == NULL)
+		write(1, "OK\n", 3);
 	if ((*list_a)->next == NULL)
 		return ;
 	while (*list_a && check == 0)

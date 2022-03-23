@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:49:55 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 16:03:56 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/23 17:44:50 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ long	long_len(long *sorted)
 	return (i);
 }
 
-int	check(long *sorted, int i)
+int	check(long *sorted, long i)
 {
-	int	j;
+	long	j;
 
 	j = -1;
 	while (sorted[++j] < 2147483649)
@@ -38,19 +38,16 @@ int	check(long *sorted, int i)
 	return (0);
 }
 
-long	*sort(long *sorted, int i)
+long	*sort(long *sorted, long i)
 {
 	int		verif;
-	int		j;
+	long	j;
 	long	tmp;
 
 	verif = 1;
 	while (verif)
 	{
 		verif = check(sorted, i);
-		j = 0;
-		while (j < 5)
-			j++;
 		j = -1;
 		while (verif && sorted[++j] < 2147483649)
 		{
@@ -68,7 +65,7 @@ long	*sort(long *sorted, int i)
 long	*first_sort(char **argv)
 {
 	long	*sorted;
-	int		i;
+	long	i;
 
 	i = 0;
 	while (argv[i])

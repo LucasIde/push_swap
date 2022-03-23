@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:52:02 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 16:12:10 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/23 17:23:55 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,10 @@ int	find_max(t_list *list_b, long *sorted, long len, int swap)
 
 int	check_swap(t_list *list_b, long *sorted, long len, int mv)
 {
-	int	rotate;
-	int	reverse;
-
-	rotate = 0;
-	reverse = 0;
 	if (sorted[len] == (int)list_b->next->content)
 	{
 		if (sorted[len - 1] == (int)list_b->content)
-		{
 			mv = 5;
-		}
 	}
 	return (mv);
 }
@@ -63,7 +56,6 @@ void	move_rotate(t_list **list_b, long *sorted, int len, int mv)
 	while ((int)(*list_b)->next->content != sorted[len])
 	{
 		rotate(list_b);
-		list_next(list_b);
 		write_mv(mv);
 	}
 	mv = check_swap(*list_b, sorted, len, mv);
@@ -91,7 +83,6 @@ void	sort_chunk(t_list **list_a, t_list **list_b, long *sorted)
 			while ((int)(*list_b)->content != sorted[len])
 			{
 				reverse_rotate(list_b);
-				list_next(list_b);
 				write_mv(mv);
 			}
 		}

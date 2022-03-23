@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:31:42 by lide              #+#    #+#             */
-/*   Updated: 2022/03/22 19:13:32 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/23 16:18:56 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ long	ft_atoi(const char *str)
 	int		i;
 	int		x;
 
+	j = 0;
 	i = 0;
 	x = 1;
-	j = 0;
 	while (str[i] == ' ')
 		i++;
 	if (str[i] == '-')
@@ -44,7 +44,7 @@ int	is_digit(char *arg)
 	int	i;
 
 	i = 0;
-	if (arg[i] == '-')
+	if (arg[i] == '-' && arg[i + 1])
 		i++;
 	while (arg[i])
 	{
