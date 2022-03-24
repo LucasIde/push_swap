@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:15:06 by lide              #+#    #+#             */
-/*   Updated: 2022/03/22 20:00:33 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/24 15:05:32 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	write_error_str(t_list **list_a, t_list **list_b, char *str)
 		free_list(list_a);
 	while (*list_b)
 		free_list(list_b);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	return (0);
 }
 
@@ -28,7 +28,7 @@ void	*write_error(t_list **list)
 {
 	while (*list)
 		free_list(list);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	return (NULL);
 }
 

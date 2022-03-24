@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:15:07 by lide              #+#    #+#             */
-/*   Updated: 2022/03/22 19:50:52 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/24 13:46:09 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_list
 
 typedef struct s_verif
 {
-	int		i;
+	long	i;
 	int		verif1;
 	long	verif2;
 	long	verif3;

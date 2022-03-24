@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:08:24 by lide              #+#    #+#             */
-/*   Updated: 2022/03/22 19:59:46 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/24 14:13:24 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ char	*ft_strjoin(char *s1, char *s2, int i, int j)
 	return (s3);
 }
 
+char	*free_error(char *str, char *save)
+{
+	if (save)
+		free(save);
+	free(str);
+	return (NULL);
+}
+
 char	*ft_read(int fd, char *save)
 {
 	char	*str;
@@ -48,23 +56,21 @@ char	*ft_read(int fd, char *save)
 
 	str = malloc(sizeof(char) * (1));
 	if (!str)
+	{
+		if (save)
+			free(save);
 		return (NULL);
+	}
 	i = 1;
 	while (backspace(save) && i)
 	{
 		i = read(fd, str, 1);
 		if (i == -1 || (!save && i == 0))
-		{
-			free(str);
-			return (NULL);
-		}
+			return (free_error(str, save));
 		str[i] = 0;
 		save = ft_strjoin(save, str, -1, -1);
 		if (!save)
-		{
-			free(str);
-			return (NULL);
-		}
+			return (free_error(str, save));
 	}
 	free(str);
 	return (save);

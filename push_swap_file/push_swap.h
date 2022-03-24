@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:32:39 by lide              #+#    #+#             */
-/*   Updated: 2022/03/22 17:35:19 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/24 14:54:50 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_list
 
 typedef struct s_verif
 {
-	int		i;
+	long	i;
 	int		verif1;
 	long	verif2;
 	long	verif3;
@@ -38,7 +38,7 @@ typedef struct s_move
 	long	min;
 	long	max;
 	int		mv;
-	int		i;
+	long	i;
 	int		splited;
 }			t_move;
 
@@ -65,5 +65,6 @@ void	tiny(t_list **list_a, t_list **list_b, long *sorted, int argc);
 int		check_move(t_list *list, long *sorted, int start, int end);
 void	free_list(t_list **list);
 int		check_sorted(t_list **list_a);
+int		check_is_digit(int argc, char **argv);
 
 #endif

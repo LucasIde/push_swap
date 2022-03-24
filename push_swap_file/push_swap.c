@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:42:56 by lide              #+#    #+#             */
-/*   Updated: 2022/03/22 19:21:54 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/24 14:54:20 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	main(int argc, char **argv)
 	int		div;
 
 	if (argc < 3)
-		return (0);
+		return (check_is_digit(argc, argv));
 	div = ft_divider(argc);
 	list_b = NULL;
 	list_a = parcing(argv);

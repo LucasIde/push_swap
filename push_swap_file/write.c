@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:38:12 by lide              #+#    #+#             */
-/*   Updated: 2022/03/19 15:56:29 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/24 15:02:13 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*write_error(t_list **list)
 {
 	while (*list)
 		free_list(list);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	return (NULL);
 }
 
@@ -42,6 +42,22 @@ int	write_error_array(t_list **list)
 {
 	while (*list)
 		free_list(list);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
+	return (0);
+}
+
+int	check_is_digit(int argc, char **argv)
+{
+	int		verif;
+	long	verif2;
+
+	verif = 0;
+	verif2 = 0;
+	if (argc < 2)
+		return (0);
+	verif = is_digit(argv[1]);
+	verif2 = ft_atoi(argv[1]);
+	if (verif || verif2 > 2147483648)
+		write(2, "Error\n", 6);
 	return (0);
 }

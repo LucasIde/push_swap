@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:49:53 by lide              #+#    #+#             */
-/*   Updated: 2022/03/22 17:03:30 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/24 14:30:19 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@ int	check_move(char *str)
 	mv = 0;
 	while (str[++i] && mv >= 0)
 	{
-		if (str[i] == 's' && (i == 0 || (i == 1 && mv == 10)))
+		if (str[i] == 's' && ((i == 0 && str[i + 1] != '\n')
+				|| (i == 1 && mv == 10)))
 			mv += 10;
-		else if (str[i] == 'r' && (i == 0 || (i == 1 && mv == 100)
-				|| (i == 2 && mv == 200)))
+		else if (str[i] == 'r' && ((i == 0 && str[i + 1] != '\n')
+				|| (i == 1 && mv == 100) || (i == 2 && mv == 200)))
 			mv += 100;
-		else if (str[i] == 'p' && i == 0)
+		else if (str[i] == 'p' && i == 0 && str[i + 1] != '\n')
 			mv += 1000;
-		else if (str[i] == 'a' && i != 0 && (mv % 10 == 0))
+		else if (str[i] == 'a' && i > 0 && i < 3 && (mv % 10 == 0))
 			mv += 1;
-		else if (str[i] == 'b' && (mv % 10 == 0))
+		else if (str[i] == 'b' && i > 0 && i < 3 && (mv % 10 == 0))
 			mv += 2;
 		else if (str[i] == '\n' && !str[i + 1])
 			mv += 3;

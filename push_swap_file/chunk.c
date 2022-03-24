@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:17:48 by lide              #+#    #+#             */
-/*   Updated: 2022/03/23 17:02:56 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/24 13:41:50 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	in_list(int content, long *sorted, int start, int end)
 
 int	check_move(t_list *list, long *sorted, int start, int end)
 {
-	int		rotate;
-	int		reverse;
+	long		rotate;
+	long		reverse;
 
 	rotate = 0;
 	reverse = 0;
