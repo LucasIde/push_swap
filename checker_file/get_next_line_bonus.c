@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:08:24 by lide              #+#    #+#             */
-/*   Updated: 2022/03/24 14:13:24 by lide             ###   ########.fr       */
+/*   Updated: 2022/03/25 14:03:46 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_read(int fd, char *save)
 	char	*str;
 	int		i;
 
-	str = malloc(sizeof(char) * (1));
+	str = malloc(sizeof(char) * 2);
 	if (!str)
 	{
 		if (save)
